@@ -1,6 +1,7 @@
-<circle-progress [title]="days" [subtitle]="['Days', formattedTime]" [titleFontSize]="'60'" [subtitleFontSize]="'15'" [percent]="85" [radius]="100"
-  [outerStrokeWidth]="16" [innerStrokeWidth]="8" [animation]="true" [animationDuration]="300"></circle-progress>
-<p id="demo">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds</p>
+<circle-progress [title]="days" [clockwise]="true" [subtitle]="['Days']" [percent]="percentage" [titleFontSize]="'60'"
+  [subtitleFontSize]="'15'" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8" [animation]="false"
+  ></circle-progress>
+<p id="demo">{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds</p>
 <div>
-  <button (click)="startCounter()">Start Counter</button>
+  <!-- <button (click)="startCounter()">Start Counter</button> -->
 </div>

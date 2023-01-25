@@ -12,7 +12,8 @@ export class FolderPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {
   }
 
-  async ngOnInit() {
+   ngOnInit() {
+    this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
   }
 
 

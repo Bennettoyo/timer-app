@@ -15,7 +15,9 @@
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
+    <div class="card-container">
+      <app-card [title]="folder" [avatarImageUrl]="'https://ionicframework.com/docs/img/demos/avatar.svg'"></app-card>
+    </div>
     <app-timer></app-timer>
   </div>
 </ion-content>

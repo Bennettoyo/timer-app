@@ -15,6 +15,7 @@ export class TimerComponent implements OnInit {
   seconds: any;
   dateStarted: any;
   formattedTime: any;
+  percentage: any;
 
   constructor(private storage: Storage) {
     this.init();
@@ -60,10 +61,6 @@ export class TimerComponent implements OnInit {
     delta -= this.minutes * 60;
 
     this.seconds = Math.floor(delta % 60);
-
-    // Need to figure out how to show the start of the day to the end of the day and show that in the subtitle of the circle progress thingy
-    var seconds = 9999; // Some arbitrary value
-    var date = new Date(seconds * 1000); 
-    this.formattedTime = date.toTimeString().split(' ')[0];
+    this.percentage = (this.hours / 24 + this.minutes / (60 * 24)) * 100
   }
 }

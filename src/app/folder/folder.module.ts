@@ -10,6 +10,7 @@ import { FolderPage } from './folder.page';
 import { CdTimerModule } from 'angular-cd-timer';
 import { TimerComponent } from '../timer/timer.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { CardComponent } from '../card/card.component';
 
 @NgModule({
   imports: [
@@ -19,8 +20,6 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     FolderPageRoutingModule,
     CdTimerModule,
     NgCircleProgressModule.forRoot({
-      "radius": 60,
-      "space": -10,
       "outerStrokeGradient": true,
       "outerStrokeWidth": 10,
       "outerStrokeColor": "#4882c2",
@@ -36,6 +35,6 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     })
 
   ],
-  declarations: [FolderPage, TimerComponent]
+  declarations: [FolderPage, TimerComponent, CardComponent]
 })
 export class FolderPageModule { }
