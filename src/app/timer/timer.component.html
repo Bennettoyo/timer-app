@@ -1,7 +1,9 @@
-<circle-progress [title]="days" [clockwise]="true" [subtitle]="['Days']" [percent]="percentage" [titleFontSize]="'60'"
-  [subtitleFontSize]="'15'" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8" [animation]="false"
-  ></circle-progress>
+<circle-progress [title]="days" [clockwise]="true" [subtitle]="[dayText]" [percent]="percentage" [titleFontSize]="'60'"
+  [subtitleFontSize]="'15'" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+  [animation]="false"></circle-progress>
 <p id="demo">{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds</p>
 <div>
-  <!-- <button (click)="startCounter()">Start Counter</button> -->
 </div>
+<ion-icon *ngIf="userHasStarted" (click)="startCounter()" color="primary" size="large"
+  name="refresh-outline"></ion-icon>
+<ion-icon *ngIf="!userHasStarted" (click)="startCounter()" color="primary" size="large" name="play-outline"></ion-icon>

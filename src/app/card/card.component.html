@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card (click)="setOpen(true)" id="open-modal" expand="block">
   <ion-card-header>
     <ion-card-title>{{title}}</ion-card-title>
   </ion-card-header>
@@ -9,3 +9,25 @@
     </ion-avatar>
   </ion-card-content>
 </ion-card>
+
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="setOpen(false)">Cancel</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ng-container *ngFor="let badge of badges">
+        <ion-item>
+          <ion-avatar slot="start">
+            <!-- FIGURE OUT HOW TO GET A TICK OVER THE AVATAR WHEN STREAK ACHIEVED  -->
+            <img src="{{badge.src}}" alt="badge">
+          </ion-avatar>
+          <ion-label>{{badge.title}} - streak:{{badge.streak}}</ion-label>
+        </ion-item>
+      </ng-container>
+    </ion-content>
+  </ng-template></ion-modal>
