@@ -117,3 +117,12 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.add-timer {
+  justify-content: center;
+  margin-top: 20px;
+
+  .input-wrapper {
+    justify-content: center !important;
+  }
+}

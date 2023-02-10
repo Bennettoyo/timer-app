@@ -1,9 +1,30 @@
-ion-avatar {
+.main-badge {
     margin: auto;
-    margin-top: 20px;
+    // margin-top: 20px;
     --border-radius: 20px;
+    // margin-right: 20px;
 }
 
 ion-card-content {
     padding-bottom: 20px;
+}
+
+.avatar-container {
+    position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100px !important; //any size
+    max-height: 100px !important; //any size 
+    --border-radius: 20px
+}
+
+#tick {
+    font-size: 24px;
+    position: absolute;
+    bottom: 7px;
+    right: 6px;
+}
+
+.icon-achievement-img {
+    filter: brightness(34%);
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class TimerComponent implements OnInit {
   @Input() title: any;
+  @Output() dayEvent = new EventEmitter<number>();
   startTime!: number;
   storedTimeValue: any;
   days: any = 0;
@@ -49,6 +50,7 @@ export class TimerComponent implements OnInit {
   setCountUp() {
     this.setUpTimer();
     this.counterInterval = setInterval(() => {
+      this.dayEvent.emit(this.days);
       this.setUpTimer();
     }, 1000);
   }
