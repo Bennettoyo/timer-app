@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -21,8 +22,13 @@ export class TimerComponent implements OnInit {
   counterInterval: any;
   userHasStarted: boolean | undefined;
   dayText = "Days";
+  isModalOpen = false;
+  images = [
+    { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png" },
+    { src: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" },
+  ]
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private alertController: AlertController) {
     this.init();
   }
 
@@ -79,4 +85,40 @@ export class TimerComponent implements OnInit {
     this.seconds = Math.floor(delta % 60);
     this.percentage = (this.hours / 24 + this.minutes / (60 * 24)) * 100
   }
+
+  getRandomImg() {
+    console.log(this.images[1].src);
+    return this.images[1].src;
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = true;
+  }
+
+  onWillDismiss(event: Event) {
+    this.isModalOpen = false;
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Are you sure you want to restart?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.startCounter();
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
 }

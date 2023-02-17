@@ -25,6 +25,7 @@ import { CardComponent } from '../card/card.component';
       "outerStrokeColor": "#4882c2",
       "outerStrokeGradientStopColor": "#53a9ff",
       "innerStrokeColor": "#e7e8ea",
+      "titleColor": "#e7e8ea",
       "innerStrokeWidth": 10,
       "animateTitle": false,
       "animationDuration": 1000,
@@ -32,6 +33,7 @@ import { CardComponent } from '../card/card.component';
       "showBackground": false,
       "clockwise": false,
       "startFromZero": false,
+      "showInnerStroke": true
     })
 
   ],

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+import { Subject } from 'rxjs';
 
 interface timer {
   id: number,
@@ -18,7 +20,9 @@ export class DataService {
     { id: 3, title: 'Timer 3', url: '/folder/Timer 3', icon: 'timer' },
   ];
 
-  constructor(private storage: Storage) {
+  public appPagesSubject = new Subject<timer[]>();
+
+  constructor(private storage: Storage, private router: Router) {
     this.init();
   }
 
@@ -27,9 +31,15 @@ export class DataService {
   }
 
   removeTimer(title: string) {
-    console.log("remove timer param", title);
     this.appPages = this.appPages.filter(timer => timer.title !== title);
-    console.log(this.appPages);
+    if (this.appPages.length !== 0) {
+      this.appPagesSubject.next(this.appPages);
+      this.saveTimers();
+      let routeName = this.appPages[0].title;
+      this.router.navigate(['/folder/' + routeName]);
+    } else {
+      alert("nah mate you'd run out of timers yeh");
+    }
   }
 
   async getAppPages() {
@@ -48,6 +58,9 @@ export class DataService {
     let appPageData = await this.storage.get('appPageData');
     if (appPageData) {
       this.appPages = appPageData;
+      this.appPagesSubject.next(appPageData)
+    } else {
+      this.appPagesSubject.next(this.appPages);
     }
   }
 }

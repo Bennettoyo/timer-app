@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
 import { DataService } from './data.service';
@@ -21,14 +22,14 @@ export class AppComponent {
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
 
-  // Only have 2 or 3 timers for mainstream habits people want to get rid of or streaks they want to build, make the rest editable and able to add new timers 
-
-  constructor(private dataservice: DataService) {
+  constructor(private dataservice: DataService, private router: Router) {
     this.init();
   }
 
   async init() {
-    this.appPages = await this.dataservice.getAppPages();
+    this.dataservice.appPagesSubject.subscribe((result) => {
+      this.appPages = result;
+    })
   }
 
   addTimer() {
@@ -38,11 +39,10 @@ export class AppComponent {
       this.dataservice.appPages.push(
         { id: id, title: this.name, url: `/folder/${this.name}`, icon: 'timer' }
       );
-      this.appPages.push(
-        { id: id, title: this.name, url: `/folder/${this.name}`, icon: 'timer' }
-      );
       this.name = "";
-      this.dataservice.saveTimers();
+      this.dataservice.saveTimers().then(() => {
+        this.appPages = this.dataservice.appPages;
+      });
       this.modal.dismiss(this.name, 'confirm');
     } else {
       alert("nah pal");

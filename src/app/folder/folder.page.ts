@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { DataService } from '../data.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class FolderPage implements OnInit {
   public folder!: string;
   public day!: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private dataservice: DataService) {
+  constructor(private activatedRoute: ActivatedRoute, private dataservice: DataService, private alertController: AlertController) {
   }
 
   ngOnInit() {
@@ -26,5 +27,27 @@ export class FolderPage implements OnInit {
 
   removeTimer() {
     this.dataservice.removeTimer(this.folder);
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Are you sure you want to remove this timer?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+          },
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.removeTimer();
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 }
