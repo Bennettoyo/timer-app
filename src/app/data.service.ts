@@ -15,9 +15,9 @@ interface timer {
 })
 export class DataService {
   public appPages: timer[] = [
-    { id: 1, title: 'Timer 1', url: '/folder/Timer 1', icon: 'timer' },
-    { id: 2, title: 'Timer 2', url: '/folder/Timer 2', icon: 'timer' },
-    { id: 3, title: 'Timer 3', url: '/folder/Timer 3', icon: 'timer' },
+    // { id: 1, title: 'Timer Test 1', url: '/folder/Timer Test 1', icon: 'timer' },
+    // { id: 2, title: 'Timer Test 2', url: '/folder/Timer Test 2', icon: 'timer' },
+    // { id: 3, title: 'Timer Test 3', url: '/folder/Timer Test 3', icon: 'timer' },
   ];
 
   public appPagesSubject = new Subject<timer[]>();
@@ -32,13 +32,13 @@ export class DataService {
 
   removeTimer(title: string) {
     this.appPages = this.appPages.filter(timer => timer.title !== title);
-    if (this.appPages.length !== 0) {
-      this.appPagesSubject.next(this.appPages);
-      this.saveTimers();
+    this.appPagesSubject.next(this.appPages);
+    this.saveTimers();
+    if (this.appPages.length > 0) {
       let routeName = this.appPages[0].title;
       this.router.navigate(['/folder/' + routeName]);
     } else {
-      alert("nah mate you'd run out of timers yeh");
+      this.router.navigate(['/folder/home-no-one-will-choose-this']);
     }
   }
 

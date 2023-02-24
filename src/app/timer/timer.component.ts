@@ -23,9 +23,10 @@ export class TimerComponent implements OnInit {
   userHasStarted: boolean | undefined;
   dayText = "Days";
   isModalOpen = false;
+  randomImg = "";
   images = [
-    { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png" },
-    { src: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" },
+    { src: "https://rare-gallery.com/uploads/posts/964777-motivational-philosophy-memes-simple-minimalism.png" },
+    { src: "https://u2y6a8h5.rocketcdn.me/wp-content/uploads/2022/11/7.png" },
   ]
 
   constructor(private storage: Storage, private alertController: AlertController) {
@@ -87,11 +88,11 @@ export class TimerComponent implements OnInit {
   }
 
   getRandomImg() {
-    console.log(this.images[1].src);
-    return this.images[1].src;
+    this.randomImg = this.images[Math.floor(Math.random() * this.images.length)].src;
   }
 
   setOpen(isOpen: boolean) {
+    this.getRandomImg();
     this.isModalOpen = true;
   }
 

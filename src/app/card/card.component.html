@@ -1,10 +1,10 @@
-<ion-card (click)="setOpen(true)" id="open-modal" expand="block">
+<ion-card id="open-modal" expand="block">
   <ion-card-header>
     <ion-card-title>{{title}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     Current Badge:
-    <ion-avatar class="main-badge">
+    <ion-avatar (click)="setOpen(true)" class="main-badge">
       <!-- <img alt="Silhouette of a person's head" src="{{avatarImageUrl}}" /> -->
       <ion-icon [ngStyle]="{'color': avatarImageUrl}" name="trophy-outline" size="large"></ion-icon>
     </ion-avatar>
@@ -26,8 +26,7 @@
           <ion-avatar class="avatar-container" slot="start">
             <!-- FIGURE OUT HOW TO GET A TICK OVER THE AVATAR WHEN STREAK ACHIEVED  -->
             <!-- <img [ngClass]="{'icon-achievement-img': days >= badge.streak}" src="{{badge.src}}" alt="badge"> -->
-            <ion-icon [ngStyle]="{'color': badge.color}"
-              name="trophy-outline" size="large"></ion-icon>
+            <ion-icon [ngStyle]="{'color': badge.color}" name="trophy-outline" size="large"></ion-icon>
             <ion-icon *ngIf="days >= badge.streak" id="tick" color="success" name="checkmark-outline"></ion-icon>
           </ion-avatar>
           <ion-label>{{badge.streak}}+ Days</ion-label>

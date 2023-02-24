@@ -33,7 +33,10 @@ export class AppComponent {
   }
 
   addTimer() {
-    const id = this.appPages[this.appPages.length - 1].id + 1;
+    let id = this.appPages[this.appPages.length - 1]?.id + 1;
+    if (isNaN(id)) {
+      id = 1
+    };
     let results = this.appPages.filter(item => item.title == this.name);
     if (results.length == 0) {
       this.dataservice.appPages.push(

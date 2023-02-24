@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { DataService } from './data.service';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Timer 1',
+    redirectTo: 'folder/home-no-one-will-choose-this',
     pathMatch: 'full'
   },
   {
@@ -19,4 +20,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
