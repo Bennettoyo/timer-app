@@ -118,9 +118,12 @@ ion-item.selected {
   --color: var(--ion-color-primary);
 }
 
+.margin-top {
+  margin-top: 20px;
+}
+
 .add-timer {
   justify-content: center;
-  margin-top: 20px;
 
   .input-wrapper {
     justify-content: center !important;

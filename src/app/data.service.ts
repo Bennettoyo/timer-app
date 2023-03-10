@@ -38,20 +38,20 @@ export class DataService {
       let routeName = this.appPages[0].title;
       this.router.navigate(['/folder/' + routeName]);
     } else {
-      this.router.navigate(['/folder/home-no-one-will-choose-this']);
+      this.router.navigate(['']);
     }
   }
 
-  async getAppPages() {
-    let appPageData = await this.storage.get('appPageData');
-    let returnedData: timer[];
-    if (appPageData) {
-      returnedData = appPageData;
-    } else {
-      returnedData = this.appPages;
-    }
-    return returnedData;
-  }
+  // async getAppPages() {
+  //   let appPageData = await this.storage.get('appPageData');
+  //   let returnedData: timer[];
+  //   if (appPageData) {
+  //     returnedData = appPageData;
+  //   } else {
+  //     returnedData = this.appPages;
+  //   }
+  //   return returnedData;
+  // }
 
   async init() {
     const storage = await this.storage.create();

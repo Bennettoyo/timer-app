@@ -1,12 +1,25 @@
 .main-badge {
     margin: auto;
-    margin-top: 20px;
-    --border-radius: 20px;
-    // margin-right: 20px;
+    /* margin-top: 20px; */
+    /* --border-radius: 20px; */
+    background: #949494;
+    border: 2px black solid;
+    margin-top: 10px;
+    margin-bottom: 5px;
+
+    .main-badge-icon {
+        position: absolute;
+        top: 47px;
+        right: 116px;
+    }
 }
 
 ion-card-content {
-    padding-bottom: 20px;
+    padding: 0px !important;
+}
+
+ion-card {
+    border-radius: 10%;
 }
 
 .avatar-container {

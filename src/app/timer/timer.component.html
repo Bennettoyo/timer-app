@@ -1,19 +1,17 @@
-<circle-progress [title]="days" [clockwise]="true" [subtitle]="[dayText]" [percent]="percentage" [titleFontSize]="'45'"
-  [subtitleFontSize]="'15'" [radius]="100" [outerStrokeWidth]="6" [innerStrokeWidth]="4"
+<circle-progress [title]="days" [clockwise]="true" [subtitle]="[dayText]" [percent]="percentage" [titleFontSize]="'60'"
+  [subtitleFontSize]="'20'" [radius]="115" [outerStrokeWidth]="6" [innerStrokeWidth]="4"
   [animation]="false"></circle-progress>
 <p id="demo">{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds</p>
-<div>
-</div>
-<ion-icon *ngIf="userHasStarted" (click)="presentAlert()" color="primary" size="large"
+<ion-icon class="refresh-icon" *ngIf="userHasStarted" (click)="presentAlert()" color="primary" size="large"
   name="refresh-outline"></ion-icon>
+<ion-icon *ngIf="userHasStarted" (click)="setOpen(true)" name="alert-circle-outline" color="danger"
+  size="large"></ion-icon>
 <ion-icon *ngIf="!userHasStarted" (click)="startCounter()" color="primary" size="large" name="play-outline"></ion-icon>
 <br>
-<ion-button (click)="setOpen(true)" class="help-button" color="danger" shape="round">HELP!</ion-button>
-
-<ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)" id="example-modal" #modal trigger="open-custom-dialog">
+<!-- <ion-button (click)="setOpen(true)" class="help-button" color="danger" shape="round">HELP!</ion-button> -->
+<ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)" id="example-modal" #modal
+  trigger="open-custom-dialog">
   <ng-template>
-    <img
-      src="{{randomImg}}"
-      alt="">
+    <img src="{{randomImg}}" alt="">
   </ng-template>
 </ion-modal>

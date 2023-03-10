@@ -10,6 +10,7 @@ export class CardComponent implements OnInit {
   @Input() title!: string;
   @Input() dayChange!: number;
   avatarImageUrl!: string;
+  avatarTitle!: string;
   isModalOpen = false;
   days = 0;
   public badges = [
@@ -53,12 +54,14 @@ export class CardComponent implements OnInit {
         // Commented out until I can figure out what images to use
         // this.avatarImageUrl = filteredBadge[0].src;
         this.avatarImageUrl = filteredBadge[0].color;
+        this.avatarTitle = filteredBadge[0].title;
       }
     } else {
       let filteredBadge = this.badges.filter(x => x.streak == 0);
       // Commented out until I can figure out what images to use
       // this.avatarImageUrl = filteredBadge[0].src;
       this.avatarImageUrl = filteredBadge[0].color;
+      this.avatarTitle = filteredBadge[0].title;
     }
   }
 

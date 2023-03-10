@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { DataService } from './data.service';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/home-no-one-will-choose-this',
-    pathMatch: 'full'
+    component: HomeComponent
   },
   {
     path: 'folder/:id',

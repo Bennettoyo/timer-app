@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { DataService } from '../data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-folder',
@@ -11,21 +12,12 @@ import { DataService } from '../data.service';
 export class FolderPage implements OnInit {
   public folder!: string;
   public day!: number;
-  public displayHome: boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private dataservice: DataService, private alertController: AlertController, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private dataservice: DataService, private alertController: AlertController, private router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    if (this.folder == "home-no-one-will-choose-this") {
-      this.displayHome = true;
-    } else {
-      this.displayHome = false;
-    }
-  }
-
-  ngAfterViewInit() {
   }
 
   dayChange(event: any) {
@@ -53,6 +45,7 @@ export class FolderPage implements OnInit {
           role: 'confirm',
           handler: () => {
             this.removeTimer();
+            this.toastr.success('Timer Removed!');
           },
         },
       ],

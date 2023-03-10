@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonModal } from '@ionic/angular';
+import { IonInput, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
 import { DataService } from './data.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface timer {
   id: number,
@@ -18,11 +19,13 @@ interface timer {
 })
 export class AppComponent {
   @ViewChild(IonModal) modal!: IonModal;
+  @ViewChild('myInput') myInput!: IonInput;
   appPages!: timer[];
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
+  autofocus: boolean = true;
 
-  constructor(private dataservice: DataService, private router: Router) {
+  constructor(private dataservice: DataService, private router: Router, private toastr: ToastrService) {
     this.init();
   }
 
@@ -30,6 +33,11 @@ export class AppComponent {
     this.dataservice.appPagesSubject.subscribe((result) => {
       this.appPages = result;
     })
+  }
+
+  ionViewDidEnter() {
+    console.log("boom")
+    this.myInput.setFocus();
   }
 
   addTimer() {
@@ -42,13 +50,15 @@ export class AppComponent {
       this.dataservice.appPages.push(
         { id: id, title: this.name, url: `/folder/${this.name}`, icon: 'timer' }
       );
-      this.name = "";
       this.dataservice.saveTimers().then(() => {
         this.appPages = this.dataservice.appPages;
+        this.router.navigate(['folder/' + this.name]);
+        this.toastr.success('Timer Added!');
+        this.name = "";
       });
       this.modal.dismiss(this.name, 'confirm');
     } else {
-      alert("nah pal");
+      this.toastr.error('Timer name already in use.', 'Sorry!');
     }
   }
 

@@ -4,10 +4,10 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <!-- DELETE FUNCTION NEXT -->
-    <ion-buttons *ngIf="!displayHome" slot="end">
-      <ion-icon (click)="presentAlert()" color="primary" size="small" name="trash-outline"></ion-icon>
+    <ion-buttons class="trash-button" slot="end">
+      <ion-icon (click)="presentAlert()" color="danger" size="small" name="trash-outline"></ion-icon>
     </ion-buttons>
-    <ion-title *ngIf="!displayHome">{{ folder }}</ion-title>
+    <ion-title>{{ folder }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,14 +18,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container" *ngIf="!displayHome">
+  <div id="container">
     <div class="card-container">
       <app-card [dayChange]="day" [title]="folder"></app-card>
     </div>
     <app-timer (dayEvent)="dayChange($event)" [title]="folder"></app-timer>
-  </div>
-  <div class="quote-container" *ngIf="displayHome">
-    <p>"You have power over your mind - not outside events. Realize this, and you will find strength."</p>
-    <ion-icon name="add-circle-outline" color="primary" size="large"></ion-icon>
   </div>
 </ion-content>
