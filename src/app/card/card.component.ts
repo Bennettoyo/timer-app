@@ -14,13 +14,16 @@ export class CardComponent implements OnInit {
   isModalOpen = false;
   days = 0;
   public badges = [
-    { title: "platinum", streak: 60, src: "assets/gold.png", color: "#E5E4E2" },
-    { title: "ruby", streak: 30, src: "assets/gold.png", color: "#E0115F" },
-    { title: "saphhire", streak: 14, src: "assets/gold.png", color: "#0F52BA" },
-    { title: "gold", streak: 7, src: "assets/gold.png", color: "#FFD700" },
-    { title: "silver", streak: 4, src: "assets/silver.png", color: "#C0C0C0" },
-    { title: "bronze", streak: 2, src: "assets/bronze.png", color: "#CD7F32" },
-    { title: "beginner", streak: 0, src: "assets/beginner.png", color: "#90EE90" },
+    { title: "Emperor", streak: 365, src: "assets/365+.png", color: "#E5E4E2" },
+    { title: "Caesar", streak: 240, src: "assets/120+.png", color: "#E5E4E2" },
+    { title: "Imperator", streak: 120, src: "assets/240+.png", color: "#E5E4E2" },
+    { title: "Consul", streak: 60, src: "assets/60+.png", color: "#E5E4E2" },
+    { title: "Praetor", streak: 30, src: "assets/30+.png", color: "#E0115F" },
+    { title: "Patrician", streak: 15, src: "assets/15+.png", color: "#0F52BA" },
+    { title: "Plebeian", streak: 7, src: "assets/7+.png", color: "#FFD700" },
+    { title: "Soldier", streak: 3, src: "assets/3+.png", color: "#C0C0C0" },
+    { title: "Brute", streak: 1, src: "assets/1+.png", color: "#CD7F32" },
+    { title: "Slave", streak: 0, src: "assets/0+.png", color: "#90EE90" },
   ];
 
   constructor(private storage: Storage) {
@@ -44,6 +47,7 @@ export class CardComponent implements OnInit {
       var delta = Math.abs(dateNow - dateStarted) / 1000;
       this.days = Math.floor(delta / 86400);
       this.days = this.days;
+      // TEST
       let counts: any[] = [];
       this.badges.forEach(element => {
         counts.push(element.streak);
@@ -53,14 +57,14 @@ export class CardComponent implements OnInit {
       if (filteredBadge) {
         // Commented out until I can figure out what images to use
         // this.avatarImageUrl = filteredBadge[0].src;
-        this.avatarImageUrl = filteredBadge[0].color;
+        this.avatarImageUrl = filteredBadge[0].src;
         this.avatarTitle = filteredBadge[0].title;
       }
     } else {
       let filteredBadge = this.badges.filter(x => x.streak == 0);
       // Commented out until I can figure out what images to use
       // this.avatarImageUrl = filteredBadge[0].src;
-      this.avatarImageUrl = filteredBadge[0].color;
+      this.avatarImageUrl = filteredBadge[0].src;
       this.avatarTitle = filteredBadge[0].title;
     }
   }

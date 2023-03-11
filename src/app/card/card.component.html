@@ -1,14 +1,12 @@
 <ion-card id="open-modal" expand="block">
   <ion-card-header>
     <!-- <ion-card-title>{{title}}</ion-card-title> -->
-    <ion-card-title>{{avatarTitle}}</ion-card-title>
+    <ion-card-title><strong>Rank:</strong> {{avatarTitle}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    Current Badge:
-    <ion-avatar (click)="setOpen(true)" class="main-badge">
-      <!-- <img alt="Silhouette of a person's head" src="{{avatarImageUrl}}" /> -->
-      <ion-icon class="main-badge-icon" [ngStyle]="{'color': avatarImageUrl}" name="trophy-outline" size="large"></ion-icon>
-    </ion-avatar>
+    <!-- <ion-avatar (click)="setOpen(true)" class="main-badge"> -->
+    <img class="main-badge-img" (click)="setOpen(true)" alt="Silhouette of a person's head" src="{{avatarImageUrl}}" />
+    <!-- </ion-avatar> -->
   </ion-card-content>
 </ion-card>
 
@@ -26,12 +24,12 @@
         <ion-item>
           <ion-avatar class="avatar-container" slot="start">
             <!-- FIGURE OUT HOW TO GET A TICK OVER THE AVATAR WHEN STREAK ACHIEVED  -->
-            <!-- <img [ngClass]="{'icon-achievement-img': days >= badge.streak}" src="{{badge.src}}" alt="badge"> -->
-            <ion-icon [ngStyle]="{'color': badge.color}" name="trophy-outline" size="large"></ion-icon>
+            <img [ngClass]="{'icon-achievement-img': days >= badge.streak}" src="{{badge.src}}" alt="badge">
+            <!-- <ion-icon [ngStyle]="{'color': badge.color}" name="trophy-outline" size="large"></ion-icon> -->
             <ion-icon *ngIf="days >= badge.streak" id="tick" color="success" name="checkmark-outline"></ion-icon>
           </ion-avatar>
-          <ion-label>{{badge.streak}}+ Days</ion-label>
-          <ion-label>{{badge.title}}</ion-label>
+            <ion-label [ngClass]="{'icon-achievement-img': days >= badge.streak}">{{badge.streak}}+ Days</ion-label>
+            <ion-label [ngClass]="{'icon-achievement-img': days >= badge.streak}">{{badge.title}}</ion-label>
         </ion-item>
       </ng-container>
     </ion-content>
