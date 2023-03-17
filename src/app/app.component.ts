@@ -66,11 +66,11 @@ export class AppComponent {
   }
 
   setOpen(isOpen: boolean) {
-    setTimeout(() => {
-      if (this.myInput) {
-        this.myInput.setFocus();
-      }
-    }, 100);
+    // setTimeout(() => {
+    //   if (this.myInput) {
+    //     this.myInput.setFocus();
+    //   }
+    // }, 100);
     this.isModalOpen = isOpen;
   }
 }
