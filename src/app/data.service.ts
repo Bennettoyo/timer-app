@@ -33,6 +33,8 @@ export class DataService {
   removeTimer(title: string) {
     this.appPages = this.appPages.filter(timer => timer.title !== title);
     this.appPagesSubject.next(this.appPages);
+    this.storage.remove(title + 'dateStarted');
+    this.storage.remove(title + 'userHasStarted');
     this.saveTimers();
     if (this.appPages.length > 0) {
       let routeName = this.appPages[0].title;

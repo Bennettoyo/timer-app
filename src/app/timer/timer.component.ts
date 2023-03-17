@@ -23,6 +23,7 @@ export class TimerComponent implements OnInit {
   userHasStarted: boolean | undefined;
   dayText = "Days";
   isModalOpen = false;
+  firstRunTest = true;
   randomImg = "";
   images = [
     { src: "assets/memes/1.jpg" },
@@ -78,6 +79,7 @@ export class TimerComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("called");
   }
 
   async init() {
@@ -107,6 +109,14 @@ export class TimerComponent implements OnInit {
   }
 
   async startCounter() {
+    // testing
+    // if (this.firstRunTest) {
+    //   this.firstRunTest = false;
+    //   let d = new Date();
+    //   this.dateStarted = d.setDate(d.getDate() - 7);
+    // } else {
+    //   this.dateStarted = new Date();
+    // }
     this.dateStarted = new Date();
     await this.storage.set(this.title + 'dateStarted', this.dateStarted);
     await this.storage.set(this.title + 'userHasStarted', true);
@@ -116,19 +126,21 @@ export class TimerComponent implements OnInit {
 
   async setUpTimer() {
     var dateStarted = await this.storage.get(this.title + 'dateStarted');
-    var dateNow = new Date().getTime();
-    var delta = Math.abs(dateNow - dateStarted) / 1000;
-    this.days = Math.floor(delta / 86400);
-    delta -= this.days * 86400;
-    if (this.days == 1) {
-      this.dayText = "Day"
+    if (dateStarted) {
+      var dateNow = new Date().getTime();
+      var delta = Math.abs(dateNow - dateStarted) / 1000;
+      this.days = Math.floor(delta / 86400);
+      delta -= this.days * 86400;
+      if (this.days == 1) {
+        this.dayText = "Day"
+      }
+      this.hours = Math.floor(delta / 3600) % 24;
+      delta -= this.hours * 3600;
+      this.minutes = Math.floor(delta / 60) % 60;
+      delta -= this.minutes * 60;
+      this.seconds = Math.floor(delta % 60);
+      this.percentage = (this.hours / 24 + this.minutes / (60 * 24)) * 100
     }
-    this.hours = Math.floor(delta / 3600) % 24;
-    delta -= this.hours * 3600;
-    this.minutes = Math.floor(delta / 60) % 60;
-    delta -= this.minutes * 60;
-    this.seconds = Math.floor(delta % 60);
-    this.percentage = (this.hours / 24 + this.minutes / (60 * 24)) * 100
   }
 
   getRandomImg() {
@@ -143,6 +155,30 @@ export class TimerComponent implements OnInit {
   onWillDismiss(event: Event) {
     this.isModalOpen = false;
   }
+
+  // async firstTimeAlert() {
+  //   const currentDate = new Date();
+  //   const oneYearAgo = new Date(new Date().setDate(new Date().getDate() - 365));
+  //   const maxDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}T${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}`;
+  //   const minDate = `${oneYearAgo.getFullYear()}-${(oneYearAgo.getMonth() + 1).toString().padStart(2, '0')}-${oneYearAgo.getDate().toString().padStart(2, '0')}T${oneYearAgo.getHours().toString().padStart(2, '0')}:${oneYearAgo.getMinutes().toString().padStart(2, '0')}`;
+  //   const alert = await this.alertController.create({
+  //     header: 'Please enter your info',
+  //     buttons: ['OK'],
+  //     inputs: [
+  //       {
+  //         type: 'datetime-local',
+  //         placeholder: 'Select a date and time',
+  //         max: maxDate,
+  //         min: minDate,
+  //         handler: (selectedValue) => {
+  //           console.log("selectedValue", selectedValue);
+  //         },
+  //       },
+  //     ],
+  //   });
+
+  //   await alert.present();
+  // }
 
   async presentAlert() {
     const alert = await this.alertController.create({

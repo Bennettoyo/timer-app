@@ -24,6 +24,7 @@ export class AppComponent {
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
   autofocus: boolean = true;
+  isModalOpen = false;
 
   constructor(private dataservice: DataService, private router: Router, private toastr: ToastrService) {
     this.init();
@@ -33,11 +34,6 @@ export class AppComponent {
     this.dataservice.appPagesSubject.subscribe((result) => {
       this.appPages = result;
     })
-  }
-
-  ionViewDidEnter() {
-    console.log("boom")
-    this.myInput.setFocus();
   }
 
   addTimer() {
@@ -56,14 +52,11 @@ export class AppComponent {
         this.toastr.success('Timer Added!');
         this.name = "";
       });
+      this.isModalOpen = false;
       this.modal.dismiss(this.name, 'confirm');
     } else {
       this.toastr.error('Timer name already in use.', 'Sorry!');
     }
-  }
-
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
   }
 
   confirm() {
@@ -72,10 +65,12 @@ export class AppComponent {
     }
   }
 
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
-    }
+  setOpen(isOpen: boolean) {
+    setTimeout(() => {
+      if (this.myInput) {
+        this.myInput.setFocus();
+      }
+    }, 100);
+    this.isModalOpen = isOpen;
   }
 }

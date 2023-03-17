@@ -34,7 +34,7 @@ export class CardComponent implements OnInit {
   }
 
   ngOnChanges(val: any) {
-    if (val.dayChange.currentValue) {
+    if (val.dayChange.currentValue || val.dayChange.currentValue == 0) {
       this.determineBadge();
     }
   }

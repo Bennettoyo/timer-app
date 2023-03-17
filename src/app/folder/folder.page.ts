@@ -21,9 +21,7 @@ export class FolderPage implements OnInit {
   }
 
   dayChange(event: any) {
-    if (event) {
-      this.day = event;
-    }
+    this.day = event;
   }
 
   removeTimer() {

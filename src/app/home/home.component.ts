@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  showPulse: boolean = false;
 
-  constructor() { }
+  constructor(private dataservice: DataService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.dataservice.appPagesSubject.subscribe((result) => {
+    //   if (result.length == 0) {
+    //     this.showPulse = true;
+    //   } else if (result.length > 0) {
+    //     this.showPulse = false
+    //   }
+    //   console.log(this.showPulse);
+    // })
+  }
 
 }
