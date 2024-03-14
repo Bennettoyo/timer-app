@@ -4,8 +4,8 @@
 <p id="demo">{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds</p>
 <ion-icon class="refresh-icon" *ngIf="userHasStarted" (click)="presentAlert()" color="primary" size="large"
   name="refresh-outline"></ion-icon>
-<ion-icon *ngIf="userHasStarted" (click)="setOpen(true)" name="alert-circle-outline" color="medium"
-  size="large"></ion-icon>
+<!-- <ion-icon *ngIf="userHasStarted" (click)="setOpen(true)" name="alert-circle-outline" color="medium"
+  size="large"></ion-icon> -->
 <ion-icon *ngIf="!userHasStarted" (click)="startCounter()" color="primary" size="large" name="play-outline"></ion-icon>
 <br>
 <!-- <ion-button (click)="setOpen(true)" class="help-button" color="danger" shape="round">HELP!</ion-button> -->
